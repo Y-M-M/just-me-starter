@@ -5,13 +5,13 @@
     "description_for_human": "个性化的名言录，可以增加、删除和浏览名言录中的名言警句，并可以按要求名言录中选取符合需要的名言",
     "description_for_model": "帮助用户管理名言录，可以增加、删除、浏览名言录，给出关键词可以从名言录中找出相关的句子",
     "auth": {
-        "type": "service_http"
+        "type": "none"
     },
     "api": {
         "type": "openapi",
         "url": "PLUGIN_HOST/openapi.yaml"
     },
-    "logo_url": "/logo.png",
+    "logo_url": "https://img0.baidu.com/it/u=332870107,278310580&fm=253&fmt=auto&app=138&f=JPEG?w=400&h=400",
     "contact_email": "3364107383@qq.com",
     "legal_info_url": "https://github.com/Y-M-M/just-me-starter"
 }

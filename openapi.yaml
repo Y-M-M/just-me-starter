@@ -1,119 +1,119 @@
 openapi: 3.0.1
 info:
-    title: 名言录
-    description: 个性化的名言录，可以增加、删除和浏览名言录中的名言警句，并可以按要求名言录中选取符合需要的名言
-    version: "v1"
+  title: 名言录
+  description: 个性化的名言录，可以增加、删除和浏览名言录中的名言警句，并可以按要求名言录中选取符合需要的名言
+  version: "v1"
 servers:
-    - url: PLUGIN_HOST
+  - url: https://github.com/Y-M-M/just-me-starter
 paths:
-    /get_wordbook:
-        get:
-            operationId: getfamoussayings
-            summary: 展示名言录
-            responses:
-                "200":
-                    description: 列表展示完成
-                    content:
-                        application/json:
-                            schema:
-                                $ref: "#/components/schemas/getfamoussayings"
-    /generate_sentences:
-        post:
-            operationId: generateSentences
-            summary: 根据用户提供的关键词，给出相关的名言
-            requestBody:
-                required: true
-                content:
-                    application/json:
-                        schema:
-                            $ref: "#/components/schemas/generateSentences"
-            responses:
-                "200":
-                    description: 句子生成成功
-                    content:
-                        application/json:
-                            schema:
-                                $ref: "#/components/schemas/responseSentences"
-    /add_word:
-        post:
-            operationId: addsaying
-            summary: 在名言录中添加一个名言
-            requestBody:
-                required: true
-                content:
-                    application/json:
-                        schema:
-                            $ref: "#/components/schemas/addsaying"
-            responses:
-                "200":
-                    description: 单词添加成功
-                    content:
-                        application/json:
-                            schema:
-                                $ref: "#/components/schemas/messageResponse"
-    /delete_word:
-        delete:
-            operationId: deletesaying
-            summary: 从名言录中删除一个名言
-            requestBody:
-                required: true
-                content:
-                    application/json:
-                        schema:
-                            $ref: "#/components/schemas/deletesaying"
-            responses:
-                "200":
-                    description: 名言删除成功
-                    content:
-                        application/json:
-                            schema:
-                                $ref: "#/components/schemas/messageResponse"
+  /get_famoussayings:
+    get:
+      operationId: getfamoussayings
+      summary: 展示名言录
+      responses:
+        "200":
+          description: 列表展示完成
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetFamousSayings"
+  /generate_sentences:
+    post:
+      operationId: generateSentences
+      summary: 根据用户提供的关键词，给出相关的名言
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/GenerateSentences"
+      responses:
+        "200":
+          description: 句子生成成功
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseSentences"
+  /add_saying:
+    post:
+      operationId: addSaying
+      summary: 在名言录中添加一个名言
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AddSaying"
+      responses:
+        "200":
+          description: 名言添加成功
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MessageResponse"
+  /delete_saying:
+    delete:
+      operationId: deleteSaying
+      summary: 从名言录中删除一个名言
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/DeleteSaying"
+      responses:
+        "200":
+          description: 名言删除成功
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MessageResponse"
 
 components:
-    schemas:
-        getWordbook:
-            type: object
-            required: [famoussayings]
-            properties:
-                wordbook:
-                    type: array
-                    items:
-                        type: string
-                    description: 名言录名言列表
-        addWord:
-            type: object
-            required: [saying]
-            properties:
-                word:
-                    type: string
-                    description: 需要添加到名言录中的一条名言
-        deleteWord:
-            type: object
-            required: [saying]
-            properties:
-                word:
-                    type: string
-                    description: 需要删除的名言
-        generateSentences:
-            type: object
-            required: [sayings_number]
-            properties:
-                word_number:
-                    type: integer
-                    description: 几条名言
-        responseSentences:
-            type: object
-            required: [sayings]
-            properties:
-                words:
-                    type: array
-                    items:
-                        type: string
-                        description: 根据关键词选择的相关的名言
-        messageResponse:
-            type: object
-            required: [message]
-            properties:
-                message:
-                    type: string
-                    description: 回复信息
+  schemas:
+    GetFamousSayings:
+      type: object
+      required: [wordbook]
+      properties:
+        wordbook:
+          type: array
+          items:
+            type: string
+          description: 名言录名言列表
+    AddSaying:
+      type: object
+      required: [saying]
+      properties:
+        saying:
+          type: string
+          description: 需要添加到名言录中的一条名言
+    DeleteSaying:
+      type: object
+      required: [saying]
+      properties:
+        saying:
+          type: string
+          description: 需要删除的名言
+    GenerateSentences:
+      type: object
+      required: [sayingsNumber]
+      properties:
+        sayingsNumber:
+          type: integer
+          description: 几条名言
+    ResponseSentences:
+      type: object
+      required: [words]
+      properties:
+        words:
+          type: array
+          items:
+            type: string
+          description: 根据关键词选择的相关的名言
+    MessageResponse:
+      type: object
+      required: [message]
+      properties:
+        message:
+          type: string
+          description: 回复信息
